@@ -23,6 +23,22 @@ router.get("/users", async (req, res) => {
   }
 });
 
+// to find only one user ?
+router.get("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findOne();
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
 // Create
 router.post("/users", async (req, res) => {
   try {
